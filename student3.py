@@ -6,27 +6,18 @@ def student3():
 import random
 import time
 
-class Skilldamage:
-    @staticmethod
-    def worrior_skill():
-        return random.randint(1,20)
-
-    @staticmethod
-    def thief_skill():
-        return random.randint(2,15)
-
-    @staticmethod
-    def magician_skill():
-        return random.randint(3,17)
-
-    @staticmethod
-    def gambler_skill():
-        return random.randint(0,50)
+def skills(skill):
+    try:
+        match skill:
+            case 0: #평타
+                return random.randint(5,10)
+            case 1: #전사스킬
+                return random.randint(10,20)
+    except Exception as e:
+        return f"error: {e}"
     
-    @staticmethod
-    def monster_skill():
-        return random.randint(3,8)
-
+        
+                    
 #------------------------------------------
 Monster_hp = random.randint(50,100)
 Player_hp = 50
@@ -37,7 +28,7 @@ class Battle:
         while Monster_hp > 0:
             print('전사가 횡베기를 사용합니다')
             time.sleep(2)
-            dmg = Skilldamage.worrior_skill()
+            dmg = skills(0)
             Monster_hp -= dmg
             if Monster_hp <= 0:
                 print('몬스터에게 최후의 일격을 날렸습니다!')
