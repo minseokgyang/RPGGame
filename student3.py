@@ -42,7 +42,7 @@ class Battle:
                 print("몬스터에게 턴이 넘어갑니다.")
                 time.sleep(2)
                 print("몬스터의 강한공격!")
-                dmg2 = Skilldamage.monster_skill()
+                dmg2 = skills(1)
                 Player_hp -= dmg2
         
                 if Player_hp <= 0:
