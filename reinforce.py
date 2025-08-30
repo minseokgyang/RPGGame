@@ -98,11 +98,11 @@ class Weapon:
 
 class WeaponBook:
     weapon = dict(
-            _1 = Weapon('강철검', 'sword', str=20),
-            _2 = Weapon('고블린', ),
-            _3 = Weapon('홉고블린', ),
-            _4 = Weapon('홉고블린',),
-            _5 = Weapon('',),
+            강철검 = Weapon('강철검', 'sword', str=20),
+            단도 = Weapon('단도', 'knife', dex=20),
+            나무지팡이 = Weapon('나무지팡이', 'staff', int=20),
+            황금코인 = Weapon('황금코인', 'coin', luck=20),
+            _5 = Weapon('',)
         )
 
 
