@@ -1,5 +1,5 @@
 from player import Player
-from inventory import Inventory
+from intentory import Inventory
 from money import Money
 from shop import Shop
 from monster import monster_spown1_2
