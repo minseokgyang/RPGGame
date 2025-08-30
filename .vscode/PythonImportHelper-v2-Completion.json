@@ -27,12 +27,39 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
         "label": "main",
         "kind": 2,
         "importPath": "main",
         "description": "main",
         "peekOfCode": "def main():\n    students = {\n        1: student1.student1,\n        2: student2.student2,\n        3: student3.student3\n    }\n    while True:\n        command = int(input(\"작동 코드를 실행해주세요 : (0:종료/1~3:수강생 호출) \").strip())\n        if command == 0:\n            print(\"프로그램을 종료합니다.\")",
         "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Weapon",
+        "kind": 6,
+        "importPath": "reinforce",
+        "description": "reinforce",
+        "peekOfCode": "class Weapon:\n    def __init__(self, name):\n        self.name = name\n        self.level = 0\n        self.fail_count = 0 \n        self.base_chance = {\n            0: 0.01,\n            1: 0.2,\n            2: 0.2\n        }",
+        "detail": "reinforce",
+        "documentation": {}
+    },
+    {
+        "label": "my_weapon",
+        "kind": 5,
+        "importPath": "reinforce",
+        "description": "reinforce",
+        "peekOfCode": "my_weapon = Weapon(\"허름한 검\")\nprint(f\"현재 무기 상태: +{my_weapon.level} {my_weapon.name}\")\ntime.sleep(1)\nwhile my_weapon.level < 4:\n    user_input = input(\"[1. 강화 2. 중단]\")\n    if user_input == '1':\n        my_weapon.try_upgrade()\n    else:\n        print('강화를 중단합니다')  \n        break",
+        "detail": "reinforce",
         "documentation": {}
     },
     {
@@ -54,20 +81,11 @@
         "documentation": {}
     },
     {
-        "label": "Skilldamage",
-        "kind": 6,
-        "importPath": "student3",
-        "description": "student3",
-        "peekOfCode": "class Skilldamage:\n    @staticmethod\n    def worrior_skill():\n        return random.randint(1,20)\n    @staticmethod\n    def thief_skill():\n        return random.randint(2,15)\n    @staticmethod\n    def magician_skill():\n        return random.randint(3,17)",
-        "detail": "student3",
-        "documentation": {}
-    },
-    {
         "label": "Battle",
         "kind": 6,
         "importPath": "student3",
         "description": "student3",
-        "peekOfCode": "class Battle:\n        print('전투가 시작되었습니다!')\n        time.sleep(2)\n        while Monster_hp > 0:\n            print('전사가 횡베기를 사용합니다')\n            time.sleep(2)\n            dmg = Skilldamage.worrior_skill()\n            Monster_hp -= dmg\n            if Monster_hp <= 0:\n                print('몬스터에게 최후의 일격을 날렸습니다!')",
+        "peekOfCode": "class Battle:\n        print('전투가 시작되었습니다!')\n        time.sleep(2)\n        while Monster_hp > 0:\n            print('전사가 횡베기를 사용합니다')\n            time.sleep(2)\n            dmg = skills(0)\n            Monster_hp -= dmg\n            if Monster_hp <= 0:\n                print('몬스터에게 최후의 일격을 날렸습니다!')",
         "detail": "student3",
         "documentation": {}
     },
@@ -76,7 +94,16 @@
         "kind": 2,
         "importPath": "student3",
         "description": "student3",
-        "peekOfCode": "def student3():\n    print(\"안녕하세요. 수강생 3번 입니다.\")\n#-----------------------------------------\nimport random\nimport time\nclass Skilldamage:\n    @staticmethod\n    def worrior_skill():\n        return random.randint(1,20)\n    @staticmethod",
+        "peekOfCode": "def student3():\n    print(\"안녕하세요. 수강생 3번 입니다.\")\n#-----------------------------------------\nimport random\nimport time\ndef skills(skill):\n    try:\n        match skill:\n            case 0: #평타\n                return random.randint(5,10)",
+        "detail": "student3",
+        "documentation": {}
+    },
+    {
+        "label": "skills",
+        "kind": 2,
+        "importPath": "student3",
+        "description": "student3",
+        "peekOfCode": "def skills(skill):\n    try:\n        match skill:\n            case 0: #평타\n                return random.randint(5,10)\n            case 1: #전사스킬\n                return random.randint(10,20)\n    except Exception as e:\n        return f\"error: {e}\"\n#------------------------------------------",
         "detail": "student3",
         "documentation": {}
     },
@@ -85,7 +112,7 @@
         "kind": 5,
         "importPath": "student3",
         "description": "student3",
-        "peekOfCode": "Monster_hp = random.randint(50,100)\nPlayer_hp = 50\nclass Battle:\n        print('전투가 시작되었습니다!')\n        time.sleep(2)\n        while Monster_hp > 0:\n            print('전사가 횡베기를 사용합니다')\n            time.sleep(2)\n            dmg = Skilldamage.worrior_skill()\n            Monster_hp -= dmg",
+        "peekOfCode": "Monster_hp = random.randint(50,100)\nPlayer_hp = 50\nclass Battle:\n        print('전투가 시작되었습니다!')\n        time.sleep(2)\n        while Monster_hp > 0:\n            print('전사가 횡베기를 사용합니다')\n            time.sleep(2)\n            dmg = skills(0)\n            Monster_hp -= dmg",
         "detail": "student3",
         "documentation": {}
     },
@@ -94,7 +121,7 @@
         "kind": 5,
         "importPath": "student3",
         "description": "student3",
-        "peekOfCode": "Player_hp = 50\nclass Battle:\n        print('전투가 시작되었습니다!')\n        time.sleep(2)\n        while Monster_hp > 0:\n            print('전사가 횡베기를 사용합니다')\n            time.sleep(2)\n            dmg = Skilldamage.worrior_skill()\n            Monster_hp -= dmg\n            if Monster_hp <= 0:",
+        "peekOfCode": "Player_hp = 50\nclass Battle:\n        print('전투가 시작되었습니다!')\n        time.sleep(2)\n        while Monster_hp > 0:\n            print('전사가 횡베기를 사용합니다')\n            time.sleep(2)\n            dmg = skills(0)\n            Monster_hp -= dmg\n            if Monster_hp <= 0:",
         "detail": "student3",
         "documentation": {}
     }

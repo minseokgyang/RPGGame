@@ -37,11 +37,13 @@ class Battle:
                 break
 
             else:
+    
                 print(f'몬스터에게 횡베기를 사용해 체력이 {Monster_hp}남았습니다!')
                 time.sleep(2)
                 print("몬스터에게 턴이 넘어갑니다.")
                 time.sleep(2)
                 print("몬스터의 강한공격!")
+                
                 dmg2 = skills(1)
                 Player_hp -= dmg2
         
