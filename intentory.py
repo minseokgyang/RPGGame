@@ -1,46 +1,34 @@
-class inventory:
+import random
+
+class Inventory:
     def __init__(self):
-        self.items = []
+        self.items = {"마나물약": 0, "회복약": 0, "랜덤스탯티켓": 0}
 
-    def add_item(self, item):
-        try:
-            self.items.append(item)
-            print(f"[인벤토리] {item.name}이(가) 추가되었습니다.")
-        except Exception as e:
-            print(f"[오류] 인벤토리에 추가 중에 문제가 발생하였습니다.")
+    def add_item(self, item_name, amount=1):
+        if item_name in self.items:
+            self.items[item_name] += amount
+        else:
+            self.items[item_name] = amount
+        print(f"[INVENTORY] {item_name} {amount}개가 추가되었습니다.")
 
-    def use_item(self, player, item_name: str):
-        try:
-            for i, item in enumerate(self.items):
-                if item.name.lower() == item_name.lower():
-                    if item.effect == "mana":
-                        player.mana = min(player.max_mana, player.mana + item.value)
-                        print(f"[아이템 사용] 마나 {item.value} 회복 -> {player.mana}/{player.max_mana}")
-                    elif item.effect == "hp":
-                        player.hp = min(player.max_hp, player.hp + item.value)
-                        print(f"[아이템 사용] 체력{item.value} 회복 -> {player.health}/{player.max_hp}")
-                    elif item.effect == "exp":
-                        player.add_exp(item.value)
-                    elif item.effect == "stat":
-                        stat_to_increase = "str"
-                        player.stats[stat_to_increase] += item.value
-                        print(f"[아이템 사용] 힘 {item.value: +} 증가 -> {player.stats}")
-                    self.items.pop(i)
-                    
-                    return True
-            print("[인벤토리] 해당 아이템은 존재하지않습니다.")
-            return False
-        except Exception as e:
-            print(f"[오류] 아이템 사용 중 문제가 발생하였습니다: {e}")
-            return False
-    
+    def use_item(self, player, item_name):
+        if self.items.get(item_name, 0) > 0:
+            if item_name == "마나물약":
+                player.MP = min(player.max_MP, player.MP + 10)
+                print("[ITEM] 마나가 10 회복되었습니다.")
+            elif item_name == "회복약":
+                player.HP = min(player.max_HP, player.HP + 20)
+                print("[ITEM] 체력이 20 회복되었습니다.")
+            elif item_name == "랜덤스탯티켓":
+                stat = random.choice(["str", "dex", "int", "luck"])
+                amount = random.randint(-3, 10)
+                setattr(player, stat, getattr(player, stat) + amount)
+                print(f"[ITEM] {stat} 능력이 {amount} 만큼 증가했습니다!")
+            self.items[item_name] -= 1
+        else:
+            print("[ERROR] 해당 아이템이 없습니다!")
+
     def show(self):
-        try:
-            if not self.items:
-                print("[인벤토리] 비어있음")
-            else:
-                print("[인벤토리]")
-                for i, item in enumerate(self.items, 1):
-                    print(f" {i}. {item}")
-        except Exception as e:
-            print(f"[오류] 인벤토리를 확인 중 문제가 발생하였습니다. {e}")
+        print("=== 인벤토리 ===")
+        for k, v in self.items.items():
+            print(f"{k}: {v}개")
