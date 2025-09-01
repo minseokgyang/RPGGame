@@ -524,7 +524,7 @@ def main():
     fifth_script_2()
     store()
 
-    노가다
+    #노가다
     store()
     fight()
 
